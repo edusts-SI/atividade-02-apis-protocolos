@@ -173,10 +173,6 @@ Para atualizar a documentação após uma alteração intencional, execute `pyth
 
 **Conclusão:** os dois formatos expressam as mesmas regras da rede social. REST torna explícitos os recursos e os códigos HTTP; GraphQL oferece flexibilidade para selecionar e combinar os dados. A escolha depende das necessidades dos clientes e da complexidade que a equipe consegue manter.
 
-### Limites do exercício
-
-Aplicação didática local, sem persistência, autenticação, paginação, uploads ou implantação de produção. O usuário é identificado pelos IDs enviados. O servidor Flask usado é de desenvolvimento. Há limite de 64 KiB por requisição, mas não há limite de profundidade/custo GraphQL nem rate limiting. Não execute múltiplos processos esperando compartilhar os dados em memória.
-
 ### Referências
 
 - [HTTP Semantics — RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): métodos e códigos HTTP.
@@ -184,6 +180,3 @@ Aplicação didática local, sem persistência, autenticação, paginação, upl
 - [GraphQL — Mutations](https://graphql.org/learn/mutations/): operações de escrita.
 - [GraphQL — Serving over HTTP](https://graphql.org/learn/serving-over-http/): transporte HTTP.
 
-## Entrega no SIGAA
-
-Publique os arquivos deste projeto em um repositório Git, confira se o README e os exemplos estão acessíveis ao professor e envie o link do repositório no SIGAA. O ambiente `.venv` é local e deve permanecer fora do repositório, conforme `.gitignore`.
