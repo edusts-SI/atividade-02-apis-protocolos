@@ -1,0 +1,68 @@
+### 1. criar_usuario
+POST http://127.0.0.1:5000/api/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "bio": "Estudante"
+}
+
+### 2. criar_usuario (segundo usuario)
+POST http://127.0.0.1:5000/api/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Bruno"
+}
+
+### 3. criar_post
+POST http://127.0.0.1:5000/api/posts
+Content-Type: application/json
+
+{
+  "usuario_id": "2",
+  "texto": "Ola, rede!"
+}
+
+### 4. comentar
+POST http://127.0.0.1:5000/api/posts/1/comentarios
+Content-Type: application/json
+
+{
+  "usuario_id": "1",
+  "texto": "Bem-vindo!"
+}
+
+### 5. curtir
+POST http://127.0.0.1:5000/api/posts/1/curtidas
+Content-Type: application/json
+
+{
+  "usuario_id": "1"
+}
+
+### 6. seguir
+POST http://127.0.0.1:5000/api/usuarios/1/seguindo
+Content-Type: application/json
+
+{
+  "seguido_id": "2"
+}
+
+### 7. buscar_usuario
+GET http://127.0.0.1:5000/api/usuarios/1
+
+### 8. posts_do_usuario
+GET http://127.0.0.1:5000/api/usuarios/2/posts
+
+### 9. buscar_post
+GET http://127.0.0.1:5000/api/posts/1
+
+### 10. seguidores_de
+GET http://127.0.0.1:5000/api/usuarios/2/seguidores
+
+### 11. seguindo_de
+GET http://127.0.0.1:5000/api/usuarios/1/seguindo
+
+### 12. feed_do_usuario
+GET http://127.0.0.1:5000/api/usuarios/1/feed

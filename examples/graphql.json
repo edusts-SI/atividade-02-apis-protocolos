@@ -1,0 +1,251 @@
+[
+  {
+    "operacao": "criar_usuario",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { criar_usuario(nome: \"Ana\", bio: \"Estudante\") { id nome perfil { usuario_id bio } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "criar_usuario": {
+          "id": "1",
+          "nome": "Ana",
+          "perfil": {
+            "bio": "Estudante",
+            "usuario_id": "1"
+          }
+        }
+      }
+    }
+  },
+  {
+    "operacao": "criar_usuario (segundo usuario)",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { criar_usuario(nome: \"Bruno\") { id nome perfil { usuario_id bio } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "criar_usuario": {
+          "id": "2",
+          "nome": "Bruno",
+          "perfil": {
+            "bio": "",
+            "usuario_id": "2"
+          }
+        }
+      }
+    }
+  },
+  {
+    "operacao": "criar_post",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { criar_post(usuario_id: \"2\", texto: \"Ola, rede!\") { id usuario_id texto comentarios { id } curtidas { usuario_id } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "criar_post": {
+          "comentarios": [],
+          "curtidas": [],
+          "id": "1",
+          "texto": "Ola, rede!",
+          "usuario_id": "2"
+        }
+      }
+    }
+  },
+  {
+    "operacao": "comentar",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { comentar(usuario_id: \"1\", post_id: \"1\", texto: \"Bem-vindo!\") { id usuario_id post_id texto } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "comentar": {
+          "id": "1",
+          "post_id": "1",
+          "texto": "Bem-vindo!",
+          "usuario_id": "1"
+        }
+      }
+    }
+  },
+  {
+    "operacao": "curtir",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { curtir(usuario_id: \"1\", post_id: \"1\") { usuario_id post_id } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "curtir": {
+          "post_id": "1",
+          "usuario_id": "1"
+        }
+      }
+    }
+  },
+  {
+    "operacao": "seguir",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { seguir(seguidor_id: \"1\", seguido_id: \"2\") { seguidor_id seguido_id } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "seguir": {
+          "seguido_id": "2",
+          "seguidor_id": "1"
+        }
+      }
+    }
+  },
+  {
+    "operacao": "buscar_usuario",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ buscar_usuario(id: \"1\") { id nome perfil { usuario_id bio } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "buscar_usuario": {
+          "id": "1",
+          "nome": "Ana",
+          "perfil": {
+            "bio": "Estudante",
+            "usuario_id": "1"
+          }
+        }
+      }
+    }
+  },
+  {
+    "operacao": "posts_do_usuario",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ posts_do_usuario(usuario_id: \"2\") { id texto autor { nome } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "posts_do_usuario": [
+          {
+            "autor": {
+              "nome": "Bruno"
+            },
+            "id": "1",
+            "texto": "Ola, rede!"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "operacao": "buscar_post",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ buscar_post(id: \"1\") { id texto comentarios { id texto } curtidas { usuario_id } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "buscar_post": {
+          "comentarios": [
+            {
+              "id": "1",
+              "texto": "Bem-vindo!"
+            }
+          ],
+          "curtidas": [
+            {
+              "usuario_id": "1"
+            }
+          ],
+          "id": "1",
+          "texto": "Ola, rede!"
+        }
+      }
+    }
+  },
+  {
+    "operacao": "seguidores_de",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ seguidores_de(usuario_id: \"2\") { id nome } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "seguidores_de": [
+          {
+            "id": "1",
+            "nome": "Ana"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "operacao": "seguindo_de",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ seguindo_de(usuario_id: \"1\") { id nome } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "seguindo_de": [
+          {
+            "id": "2",
+            "nome": "Bruno"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "operacao": "feed_do_usuario",
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "{ feed_do_usuario(usuario_id: \"1\") { id texto autor { nome perfil { bio } } } }"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "feed_do_usuario": [
+          {
+            "autor": {
+              "nome": "Bruno",
+              "perfil": {
+                "bio": ""
+              }
+            },
+            "id": "1",
+            "texto": "Ola, rede!"
+          }
+        ]
+      }
+    }
+  }
+]

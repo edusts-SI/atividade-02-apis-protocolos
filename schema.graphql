@@ -1,0 +1,56 @@
+type Perfil {
+  usuario_id: ID!
+  bio: String!
+}
+
+type Usuario {
+  id: ID!
+  nome: String!
+  perfil: Perfil!
+  posts: [Post!]!
+  seguidores: [Usuario!]!
+  seguindo: [Usuario!]!
+}
+
+type Post {
+  id: ID!
+  usuario_id: ID!
+  autor: Usuario!
+  texto: String!
+  comentarios: [Comentario!]!
+  curtidas: [Curtida!]!
+}
+
+type Comentario {
+  id: ID!
+  usuario_id: ID!
+  post_id: ID!
+  texto: String!
+}
+
+type Curtida {
+  usuario_id: ID!
+  post_id: ID!
+}
+
+type Seguidor {
+  seguidor_id: ID!
+  seguido_id: ID!
+}
+
+type Query {
+  buscar_usuario(id: ID!): Usuario!
+  posts_do_usuario(usuario_id: ID!): [Post!]!
+  buscar_post(id: ID!): Post!
+  seguidores_de(usuario_id: ID!): [Usuario!]!
+  seguindo_de(usuario_id: ID!): [Usuario!]!
+  feed_do_usuario(usuario_id: ID!): [Post!]!
+}
+
+type Mutation {
+  criar_usuario(nome: String!, bio: String = ""): Usuario!
+  criar_post(usuario_id: ID!, texto: String!): Post!
+  comentar(usuario_id: ID!, post_id: ID!, texto: String!): Comentario!
+  curtir(usuario_id: ID!, post_id: ID!): Curtida!
+  seguir(seguidor_id: ID!, seguido_id: ID!): Seguidor!
+}

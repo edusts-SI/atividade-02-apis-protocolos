@@ -1,0 +1,227 @@
+[
+  {
+    "operacao": "criar_usuario",
+    "method": "POST",
+    "path": "/api/usuarios",
+    "body": {
+      "nome": "Ana",
+      "bio": "Estudante"
+    },
+    "status": 201,
+    "response": {
+      "id": "1",
+      "nome": "Ana",
+      "perfil": {
+        "bio": "Estudante",
+        "usuario_id": "1"
+      }
+    }
+  },
+  {
+    "operacao": "criar_usuario (segundo usuario)",
+    "method": "POST",
+    "path": "/api/usuarios",
+    "body": {
+      "nome": "Bruno"
+    },
+    "status": 201,
+    "response": {
+      "id": "2",
+      "nome": "Bruno",
+      "perfil": {
+        "bio": "",
+        "usuario_id": "2"
+      }
+    }
+  },
+  {
+    "operacao": "criar_post",
+    "method": "POST",
+    "path": "/api/posts",
+    "body": {
+      "usuario_id": "2",
+      "texto": "Ola, rede!"
+    },
+    "status": 201,
+    "response": {
+      "comentarios": [],
+      "curtidas": [],
+      "id": "1",
+      "texto": "Ola, rede!",
+      "usuario_id": "2"
+    }
+  },
+  {
+    "operacao": "comentar",
+    "method": "POST",
+    "path": "/api/posts/1/comentarios",
+    "body": {
+      "usuario_id": "1",
+      "texto": "Bem-vindo!"
+    },
+    "status": 201,
+    "response": {
+      "id": "1",
+      "post_id": "1",
+      "texto": "Bem-vindo!",
+      "usuario_id": "1"
+    }
+  },
+  {
+    "operacao": "curtir",
+    "method": "POST",
+    "path": "/api/posts/1/curtidas",
+    "body": {
+      "usuario_id": "1"
+    },
+    "status": 201,
+    "response": {
+      "post_id": "1",
+      "usuario_id": "1"
+    }
+  },
+  {
+    "operacao": "seguir",
+    "method": "POST",
+    "path": "/api/usuarios/1/seguindo",
+    "body": {
+      "seguido_id": "2"
+    },
+    "status": 201,
+    "response": {
+      "seguido_id": "2",
+      "seguidor_id": "1"
+    }
+  },
+  {
+    "operacao": "buscar_usuario",
+    "method": "GET",
+    "path": "/api/usuarios/1",
+    "body": null,
+    "status": 200,
+    "response": {
+      "id": "1",
+      "nome": "Ana",
+      "perfil": {
+        "bio": "Estudante",
+        "usuario_id": "1"
+      }
+    }
+  },
+  {
+    "operacao": "posts_do_usuario",
+    "method": "GET",
+    "path": "/api/usuarios/2/posts",
+    "body": null,
+    "status": 200,
+    "response": [
+      {
+        "comentarios": [
+          {
+            "id": "1",
+            "post_id": "1",
+            "texto": "Bem-vindo!",
+            "usuario_id": "1"
+          }
+        ],
+        "curtidas": [
+          {
+            "post_id": "1",
+            "usuario_id": "1"
+          }
+        ],
+        "id": "1",
+        "texto": "Ola, rede!",
+        "usuario_id": "2"
+      }
+    ]
+  },
+  {
+    "operacao": "buscar_post",
+    "method": "GET",
+    "path": "/api/posts/1",
+    "body": null,
+    "status": 200,
+    "response": {
+      "comentarios": [
+        {
+          "id": "1",
+          "post_id": "1",
+          "texto": "Bem-vindo!",
+          "usuario_id": "1"
+        }
+      ],
+      "curtidas": [
+        {
+          "post_id": "1",
+          "usuario_id": "1"
+        }
+      ],
+      "id": "1",
+      "texto": "Ola, rede!",
+      "usuario_id": "2"
+    }
+  },
+  {
+    "operacao": "seguidores_de",
+    "method": "GET",
+    "path": "/api/usuarios/2/seguidores",
+    "body": null,
+    "status": 200,
+    "response": [
+      {
+        "id": "1",
+        "nome": "Ana",
+        "perfil": {
+          "bio": "Estudante",
+          "usuario_id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "operacao": "seguindo_de",
+    "method": "GET",
+    "path": "/api/usuarios/1/seguindo",
+    "body": null,
+    "status": 200,
+    "response": [
+      {
+        "id": "2",
+        "nome": "Bruno",
+        "perfil": {
+          "bio": "",
+          "usuario_id": "2"
+        }
+      }
+    ]
+  },
+  {
+    "operacao": "feed_do_usuario",
+    "method": "GET",
+    "path": "/api/usuarios/1/feed",
+    "body": null,
+    "status": 200,
+    "response": [
+      {
+        "comentarios": [
+          {
+            "id": "1",
+            "post_id": "1",
+            "texto": "Bem-vindo!",
+            "usuario_id": "1"
+          }
+        ],
+        "curtidas": [
+          {
+            "post_id": "1",
+            "usuario_id": "1"
+          }
+        ],
+        "id": "1",
+        "texto": "Ola, rede!",
+        "usuario_id": "2"
+      }
+    ]
+  }
+]

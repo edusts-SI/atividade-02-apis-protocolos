@@ -1,0 +1,95 @@
+### 1. criar_usuario
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { criar_usuario(nome: \"Ana\", bio: \"Estudante\") { id nome perfil { usuario_id bio } } }"
+}
+
+### 2. criar_usuario (segundo usuario)
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { criar_usuario(nome: \"Bruno\") { id nome perfil { usuario_id bio } } }"
+}
+
+### 3. criar_post
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { criar_post(usuario_id: \"2\", texto: \"Ola, rede!\") { id usuario_id texto comentarios { id } curtidas { usuario_id } } }"
+}
+
+### 4. comentar
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { comentar(usuario_id: \"1\", post_id: \"1\", texto: \"Bem-vindo!\") { id usuario_id post_id texto } }"
+}
+
+### 5. curtir
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { curtir(usuario_id: \"1\", post_id: \"1\") { usuario_id post_id } }"
+}
+
+### 6. seguir
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { seguir(seguidor_id: \"1\", seguido_id: \"2\") { seguidor_id seguido_id } }"
+}
+
+### 7. buscar_usuario
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ buscar_usuario(id: \"1\") { id nome perfil { usuario_id bio } } }"
+}
+
+### 8. posts_do_usuario
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ posts_do_usuario(usuario_id: \"2\") { id texto autor { nome } } }"
+}
+
+### 9. buscar_post
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ buscar_post(id: \"1\") { id texto comentarios { id texto } curtidas { usuario_id } } }"
+}
+
+### 10. seguidores_de
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ seguidores_de(usuario_id: \"2\") { id nome } }"
+}
+
+### 11. seguindo_de
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ seguindo_de(usuario_id: \"1\") { id nome } }"
+}
+
+### 12. feed_do_usuario
+POST http://127.0.0.1:5000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ feed_do_usuario(usuario_id: \"1\") { id texto autor { nome perfil { bio } } } }"
+}
